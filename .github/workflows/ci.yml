@@ -8,16 +8,16 @@ on:
 
 jobs:
   lint-dockerfile:
-  runs-on: ubuntu-latest
-  steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
 
-    - name: Lint Dockerfile
-      uses: hadolint/hadolint-action@v3.1.0
-      with:
-        files: |
-          Dockerfile
+      - name: Lint Dockerfile
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          files: |
+            Dockerfile
 
   test-backend:
     runs-on: ubuntu-latest
