@@ -19,7 +19,7 @@ jobs:
           files: |
             Dockerfile
 
-  test-backend:
+  test-frontend:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -35,7 +35,7 @@ jobs:
           go mod tidy
           go test -v -short --count=1 $(go list ./...)
 
-  build-push-backend:
+  build-push-frontend:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
