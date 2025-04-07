@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Konfigurasi
+GITHUB_USERNAME="XXsapt"
+GITHUB_TOKEN="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"
+IMAGE_NAME_BACKEND="ghcr.io/xxsapt/karsajobs:latest"
+
+# Build Docker image untuk backend
+echo "Building Docker image for backend..."
+docker build -t $IMAGE_NAME_BACKEND .
+
+# Login ke GitHub Container Registry
+echo "Logging in to GitHub Packages..."
+echo $GITHUB_TOKEN | docker login ghcr.io -u $GITHUB_USERNAME --password-stdin
+
+# Push images ke GitHub Packages
+echo "Pushing backend image..."
+docker push $IMAGE_NAME_BACKEND
+
+echo "Docker images successfully pushed to GitHub Packages!"
