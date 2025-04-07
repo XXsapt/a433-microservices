@@ -25,22 +25,19 @@ jobs:
 
   # Job untuk membangun dan mengunggah Docker image untuk backend
   build-push-backend:
-    docker:
-      - image: docker:latest
-        # Jika diperlukan, tambahkan service docker agar bisa mengakses daemon docker
-        privileged: true
-    steps:
-      - checkout
-      # Pastikan Docker daemon tersedia di lingkungan build CircleCI
-      - setup_remote_docker
-      - run:
-          name: Build and Push Backend Image
-          command: |
-            chmod +x build_push_image_karsajobs.sh
-            ./build_push_image_karsajobs.sh
-          environment:
-            GITHUB_USERNAME: << pipeline.parameters.github_username >>
-            PASSWORD_DOCKER_HUB: << pipeline.parameters.password_docker_hub >>
+  docker:
+    - image: docker:latest
+  steps:
+    - checkout
+    - setup_remote_docker
+    - run:
+        name: Build and Push Backend Image
+        command: |
+          chmod +x build_push_image_karsajobs.sh
+          ./build_push_image_karsajobs.sh
+        environment:
+          GITHUB_USERNAME: << pipeline.parameters.github_username >>
+          PASSWORD_DOCKER_HUB: << pipeline.parameters.password_docker_hub >>
 
 workflows:
   build_and_test:
