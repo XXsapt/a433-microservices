@@ -1,20 +1,12 @@
 #!/bin/bash
 
-# Konfigurasi
-GITHUB_USERNAME="XXsapt"
-GITHUB_TOKEN="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"
-IMAGE_NAME_FRONTEND="ghcr.io/xxsapt/karsajobs-ui:latest"
+# Build Docker image untuk backend
+echo "Building Docker image for backend..."
+docker build -t ghcr.io/${GITHUB_USERNAME}/karsajobs-ui:latest .
 
-# Build Docker image untuk frontend
-echo "Building Docker image for frontend..."
-docker build -t $IMAGE_NAME_FRONTEND .
+# Karena login sudah dilakukan di langkah sebelumnya di workflow,
+# kita langsung push image ke GitHub Container Registry
+echo "Pushing backend image..."
+docker push ghcr.io/${GITHUB_USERNAME}/karsajobs-ui:latest
 
-# Login ke GitHub Container Registry
-echo "Logging in to GitHub Packages..."
-echo $GITHUB_TOKEN | docker login ghcr.io -u $GITHUB_USERNAME --password-stdin
-
-# Push image ke GitHub Packages
-echo "Pushing frontend image..."
-docker push $IMAGE_NAME_FRONTEND
-
-echo "Frontend Docker image successfully pushed to GitHub Packages!"
+echo "Docker images successfully pushed to GitHub Packages!"
