@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Konfigurasi
-GITHUB_USERNAME="XXsapt"
+GITHUB_USERNAME="xxsapt"
 GITHUB_TOKEN="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"
 IMAGE_NAME_BACKEND="ghcr.io/xxsapt/karsajobs:latest"
 
