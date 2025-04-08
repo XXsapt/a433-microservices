@@ -2,7 +2,7 @@
 
 # Konfigurasi
 GITHUB_USERNAME="XXsapt"
-GITHUB_TOKEN="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"
+GITHUB_TOKEN="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"
 IMAGE_NAME_FRONTEND="ghcr.io/xxsapt/karsajobs-ui:latest"
 
 # Build Docker image untuk frontend
