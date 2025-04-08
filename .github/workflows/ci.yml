@@ -16,8 +16,7 @@ jobs:
       - name: Lint Dockerfile
         uses: hadolint/hadolint-action@v3.1.0
         with:
-          files: |
-            Dockerfile
+          files: Dockerfile
 
   test-backend:
     runs-on: ubuntu-latest
@@ -51,8 +50,10 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.TOKEN }}
 
-
-      - name: Build and Push Docker Image
+      - name: Build Docker Image for Backend
         run: |
-          chmod +x build_push_image_karsajobs.sh
-          ./build_push_image_karsajobs.sh
+          docker build -t ghcr.io/${{ secrets.USERNAME }}/karsajobs:latest .
+      
+      - name: Push Docker Image to GitHub Container Registry
+        run: |
+          docker push ghcr.io/${{ secrets.USERNAME }}/karsajobs:latest
